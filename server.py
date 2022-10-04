@@ -1,19 +1,20 @@
-
-
 """
 This is a server that communicates with a client using sockets with TCP protlcol.
-The purpose of this server is to store and send files to the client.
+The purpose of this server is to strore and send files to the client.
 """
 import socket
 import threading
+import os
 
-IP = socket.gethostbyname(socket.gethostname())
+IP = '192.168.1.100'
 PORT = 5050
 ADDR = (IP, PORT)
 FORMAT = 'utf-8'
 
 FILE_100MB = '100MB.bin'
 FILE_250MB = '250MB.bin'
+FILESIZE_100MB = os.path.getsize(FILE_100MB)
+#FILESIZE_250MB = os.path.getsize(FILE_250MB)
 HELLO  = 'hello.txt'
 
 
@@ -30,48 +31,60 @@ def main(n_clients: int = 3):
         conn, addr = server.accept()
         thread = threading.Thread(target=handle_client, args=(conn, addr))
         thread.start()
-        print(f'[ACTIVE CONNECTIONS] {threading.activeCount() - 1}')
-        if threading.activeCount() - 1 == n_clients:
-            break
+        print(f'[ACTIVE CONNECTIONS] {threading.active_count() - 1}')
         
 def handle_client(conn, addr):
+    """
+    1. First the server will wait for a ready message from the client.
+    2. Then the server will send a ack message to the client.
+    3. Then the server will wait for the client to send a file name.
+    4. Then the server will send the file to the client alogn with the hash.
+
+    """ 
+
     print(f'[NEW CONNECTION] {addr} connected.')
-    connected = True
 
-    while connected:
+    ready = conn.recv(1024).decode(FORMAT)
+
+
+    if ready == 'ready':
+        conn.send('ack'.encode(FORMAT))
+        print(f'[RECEIVED] {ready}')
+        print(f'[SENT] ack')
+        file_name = conn.recv(1024).decode(FORMAT)
+        print(f'[RECEIVED] {file_name}')
+        if file_name == '100MB.bin':
+            file = FILE_100MB
+        elif file_name == '250MB.bin':
+            file = FILE_250MB
+            #bar = tqdm.tqdm(range(FILESIZE_250MB), f'Sending {file_name}', unit='B', unit_scale=True, unit_divisor=1024)
+        else:
+            print('File not found')
+            conn.close()
+            return
+
+        ## Send the size of the file to the client
+        conn.send(str(FILESIZE_100MB).encode(FORMAT))
         msg = conn.recv(1024).decode(FORMAT)
-        if msg == '100MB':
-            with open(FILE_100MB, 'rb') as f:
-                file_data = f.read(1024)
-                file_hash = generate_hash(FILE_100MB)
-                conn.send(file_hash)
-                conn.send(file_data)
-                print(f'[SENDING] {FILE_100MB} to {addr}')
-        elif msg == '250MB':
-            with open(FILE_250MB, 'rb') as f:
-                file_data = f.read(1024)
-                file_hash = generate_hash(FILE_250MB)
-                conn.send(file_hash)
-                conn.send(file_data)
-                print(f'[SENDING] {FILE_250MB} to {addr}')
 
-        elif msg == 'hello':
-            with open(HELLO, 'rb') as f:
-                file_data = f.read(1024)
-                file_hash = generate_hash(HELLO)
-                conn.send(file_hash)
-                conn.send(file_data)
-                print(f'[SENDING] {HELLO} to {addr}')
-        elif msg == 'DISCONNECT':
-            connected = False
-    conn.close()
+        with open(file, 'r') as f:
+            while True:
+                data = f.read(1024)
+                if not data:
+                    break
+                conn.send(data.encode(FORMAT))
+                msg = conn.recv(1024).decode(FORMAT)
+
+        print(f'[SENT] {file_name}')
+        file_hash = generate_hash(file)
+        conn.send(file_hash)
+        print(f'[SENT] {file_hash}')
 
 def generate_hash(file):
     import hashlib
     with open(file, 'rb') as f:
         file_hash = hashlib.md5(f.read()).hexdigest()
-        print (file_hash.encode(FORMAT))
         return file_hash.encode(FORMAT)
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     main()
