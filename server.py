@@ -5,6 +5,7 @@ The purpose of this server is to strore and send files to the client.
 import socket
 import threading
 import os
+import time
 
 IP = '192.168.1.100'
 PORT = 5050
@@ -21,11 +22,13 @@ HELLO  = 'hello.txt'
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(ADDR)
 
-def main(n_clients: int = 3):
+def main():
     """
-    The server will only accept n_clients connections.
+    this function will start the server and wait for a connection from the client.
     """
-    server.listen(n_clients)
+    
+    server.listen()
+
     print(f'[LISTENING] Server is listening on {IP}')
     while True:
         conn, addr = server.accept()
@@ -66,14 +69,19 @@ def handle_client(conn, addr):
         ## Send the size of the file to the client
         conn.send(str(FILESIZE_100MB).encode(FORMAT))
         msg = conn.recv(1024).decode(FORMAT)
+        tiempoDeTransferencia = 0
 
         with open(file, 'r') as f:
+            start = time.time()
             while True:
                 data = f.read(1024)
                 if not data:
                     break
                 conn.send(data.encode(FORMAT))
                 msg = conn.recv(1024).decode(FORMAT)
+            end = time.time()
+            tiempoDeTransferencia = end - start
+        print(f'Tiempo de transferencia desde servidor: {tiempoDeTransferencia}')
 
         print(f'[SENT] {file_name}')
         file_hash = generate_hash(file)
@@ -86,5 +94,5 @@ def generate_hash(file):
         file_hash = hashlib.md5(f.read()).hexdigest()
         return file_hash.encode(FORMAT)
 
-if _name_ == '_main_':
+if __name__ == '_main_':
     main()

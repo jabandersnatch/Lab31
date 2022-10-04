@@ -51,14 +51,21 @@ class ClientMultiSocket(threading.Thread):
         print (f'file size: {filesize}')
 
         self.client.send('ack'.encode(FORMAT))
-
+        tiempoDeTransferencia = 0
         file_folder = 'ArchivosPrueba/'
         with open(file_folder+file, 'w') as f:
+            # Obtener tiempo de transferencia de cliente
+            start = time.time()
             while filesize:
                 data = self.client.recv(1024).decode(FORMAT)
                 f.write(data)
                 filesize -= len(data)
                 self.client.send('ack'.encode(FORMAT))
+            end = time.time()
+            tiempoDeTransferencia = end - start
+
+        print(f'Tiempo de transferencia desde cliente: {tiempoDeTransferencia}')
+        print(f'Tasa de transferencia: {filesize/tiempoDeTransferencia}')
 
         # wait a few seconds to make sure the file is fully downloaded
 
@@ -130,5 +137,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
