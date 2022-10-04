@@ -9,28 +9,31 @@ import os
 
 # Define external server IP and port
 host = '192.168.1.100'
-port = 5050
-ADDR = (host, port)
+global_port = 5050
 FORMAT = 'utf-8'
 FILE_100MB = '100MB.bin'
 FILE_250MB = '250MB.bin'
 FILESIZE_100MB = os.path.getsize(FILE_100MB)
-#FILESIZE_250MB = os.path.getsize(FILE_250MB)
+FILESIZE_250MB = os.path.getsize(FILE_250MB)
 file_global = FILE_100MB
 filesize_global = FILESIZE_100MB
 
 # Define ClientMultiSocket
-class ClientMultiSocket:
+class ClientMultiSocket(threading.Thread):
 
     connected = False
-
-    def __init__(self, host, port):
+    def __init__(self, port):
+        self.port = port
+        threading.Thread.__init__(self)        
+    
+    def run(self):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
-            self.client.connect((host, port))
+            self.client.connect((host, self.port))
             self.connected = True
-            print('Connected to server')
-        except:
+            print('Connected to server on port: ', self.port)
+        except socket.error as e:
+            print(str(e))
             print('Connection failed')
             sys.exit()
 
@@ -87,7 +90,7 @@ def main():
 
     elif file == '2':
         file_global = FILE_250MB
-        filesize_global = FILESIZE_250MB
+        filesize_global = FILESIZE_100MB
     else:
         print('Invalid option')
         sys.exit()
@@ -106,13 +109,15 @@ def main():
     # Create a list of threads
     threads = []
     for i in range(num_clients):
-        threads.append(ClientMultiSocket(host, port))
+        print(f'Creating thread {i}')
+        threads.append(ClientMultiSocket(global_port))
         time.sleep(0.1)
     
     # Start all threads
-    for i in range(num_clients):
-        threads[i].start()
-
+    for thread in threads:  
+        thread.start()
+        time.sleep(0.1)
+    
     # Wait for all of them to finish
     for i in range(num_clients):
         threads[i].join()
