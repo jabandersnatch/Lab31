@@ -1,0 +1,6 @@
+.bin
+# Igonore files that end in .bin
+*.bin
+# Ignore VM folders
+
+/VM
