@@ -2,7 +2,7 @@
 
 """
 This is a server that communicates with a client using sockets with TCP protlcol.
-The purpose of this server is to strore and send files to the client.
+The purpose of this server is to store and send files to the client.
 """
 import socket
 import threading
