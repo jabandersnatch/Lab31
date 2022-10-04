@@ -1,10 +1,11 @@
 # Client-Side Multithreaded TCP Socket with external server
 
+from json import load
 import socket
 import threading
 import sys
 import time
-import tqdm
+import logging
 import os
 
 # Define external server IP and port
@@ -15,15 +16,16 @@ FILE_100MB = '100MB.bin'
 FILE_250MB = '250MB.bin'
 FILESIZE_100MB = os.path.getsize(FILE_100MB)
 FILESIZE_250MB = os.path.getsize(FILE_250MB)
-file_global = FILE_100MB
-filesize_global = FILESIZE_100MB
 
 # Define ClientMultiSocket
 class ClientMultiSocket(threading.Thread):
 
     connected = False
-    def __init__(self, port):
+    def __init__(self, port, id, file, n_clients):
         self.port = port
+        self.id = id
+        self.file = file
+        self.n_clients = n_clients
         threading.Thread.__init__(self)        
     
     def run(self):
@@ -39,21 +41,29 @@ class ClientMultiSocket(threading.Thread):
 
         self.client.send('ready'.encode(FORMAT))
 
-        file = file_global
         filesize = 0
 
         if self.client.recv(1024).decode(FORMAT) == 'ack':
-            self.client.send(file.encode(FORMAT))
+            self.client.send(self.file.encode(FORMAT))
         else:
             print('Error')
             sys.exit()
         filesize = int(self.client.recv(1024).decode(FORMAT))
         print (f'file size: {filesize}')
 
+        # log the file name and the filesize
+        logging.info(f'file name: {self.file}, file size: {filesize}')
+        # log the address of the client
+        logging.info(f'client address: {self.client.getsockname()}, client_id: {self.id}')
+
+
+
         self.client.send('ack'.encode(FORMAT))
         tiempoDeTransferencia = 0
-        file_folder = 'ArchivosPrueba/'
-        with open(file_folder+file, 'w') as f:
+        file_folder = 'ArchivosRecibidos/'
+        tamArchivo = filesize
+        file_path = file_folder+'Cliente'+str(self.id)+'-'+str(self.n_clients)+'.txt'
+        with open(file_path, 'w') as f:
             # Obtener tiempo de transferencia de cliente
             start = time.time()
             while filesize:
@@ -64,23 +74,35 @@ class ClientMultiSocket(threading.Thread):
             end = time.time()
             tiempoDeTransferencia = end - start
 
-        print(f'Tiempo de transferencia desde cliente: {tiempoDeTransferencia}')
-        print(f'Tasa de transferencia: {filesize/tiempoDeTransferencia}')
+        print(f'Tiempo de transferencia desde cliente: {tiempoDeTransferencia} s')
+        print(f'Tasa de transferencia: {(tamArchivo/tiempoDeTransferencia)} B/s')
 
         # wait a few seconds to make sure the file is fully downloaded
 
         file_hash = self.client.recv(1024).decode(FORMAT)
 
-        client_hash = generate_hash(file_folder + file).decode(FORMAT)
+        client_hash = generate_hash(file_path).decode(FORMAT)
 
         print('Checking file integrity...')
         print(f'Client hash: {client_hash}')
         print(f'Server hash: {file_hash}')
 
+
         if file_hash == client_hash:
             print('Hashes are the same')
+            # notify the server that the file was downloaded correctly
+            self.client.send('ack'.encode(FORMAT))
+            # log if the file was downloaded correctly
+            logging.info(f'file downloaded correctly: {self.file}')
         else:
             print('Hashes are not the same')
+            # notify the server that the file was not downloaded correctly
+            self.client.send('nack'.encode(FORMAT))
+            # log if the file was not downloaded correctly
+            logging.info(f'file downloaded incorrectly: {self.file}')
+
+        # log the time it took to download the file
+        logging.info(f'time to download file: {tiempoDeTransferencia} s')
 
 def generate_hash(file):
     import hashlib
@@ -90,25 +112,31 @@ def generate_hash(file):
 
 def main():
     # Request in console the file to download and the number of clientes between 1, 5 and 10
-    file = input('File to download: (1) 100MB.bin or (2) 250MB.bin): ')
-    if file == '1':
-        file_global = FILE_100MB
-        filesize_global = FILESIZE_100MB
 
+    # Create a loggin file that follows the format year-month-day_hour-minute-second-log.txt
+    logging.basicConfig(filename=f'ArchivosRecibidos/{time.strftime(f"-%Y-%m-%d_%H-%M-%S")}-log.txt', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(message)s')
+
+    file = input('File to download: (1) 100MB.bin or (2) 250MB.bin): ')
+
+    file_name = ''
+    if file == '1':
+        file_name = FILE_100MB
     elif file == '2':
-        file_global = FILE_250MB
-        filesize_global = FILESIZE_100MB
+        file_name = FILE_250MB
     else:
         print('Invalid option')
         sys.exit()
     
-    num_clients = input('Number of clients (1, 5 or 10): ')
+    num_clients = input('Number of clients (1, 5, 10, 25): ')
+
     if num_clients == '1':
         num_clients = 1
     elif num_clients == '5':
         num_clients = 5
     elif num_clients == '10':
         num_clients = 10
+    elif num_clients == '25':
+        num_clients = 25
     else:
         print('Invalid option')
         sys.exit()
@@ -117,7 +145,7 @@ def main():
     threads = []
     for i in range(num_clients):
         print(f'Creating thread {i}')
-        threads.append(ClientMultiSocket(global_port))
+        threads.append(ClientMultiSocket(global_port, i, file_name, num_clients))
         time.sleep(0.1)
     
     # Start all threads
