@@ -1,0 +1,40 @@
+2022-10-05 01:41:21,373:INFO:file name: 250MB.bin, file size: 250000000
+2022-10-05 01:41:21,374:INFO:client address: ('192.168.1.124', 53831), client_id: 0
+2022-10-05 01:41:21,482:INFO:file name: 250MB.bin, file size: 250000000
+2022-10-05 01:41:21,482:INFO:client address: ('192.168.1.124', 53832), client_id: 1
+2022-10-05 01:41:21,591:INFO:file name: 250MB.bin, file size: 250000000
+2022-10-05 01:41:21,591:INFO:client address: ('192.168.1.124', 53833), client_id: 2
+2022-10-05 01:41:21,699:INFO:file name: 250MB.bin, file size: 250000000
+2022-10-05 01:41:21,699:INFO:client address: ('192.168.1.124', 53834), client_id: 3
+2022-10-05 01:41:21,810:INFO:file name: 250MB.bin, file size: 250000000
+2022-10-05 01:41:21,810:INFO:client address: ('192.168.1.124', 53835), client_id: 4
+2022-10-05 01:41:21,926:INFO:file name: 250MB.bin, file size: 250000000
+2022-10-05 01:41:21,926:INFO:client address: ('192.168.1.124', 53836), client_id: 5
+2022-10-05 01:41:22,055:INFO:file name: 250MB.bin, file size: 250000000
+2022-10-05 01:41:22,055:INFO:client address: ('192.168.1.124', 53837), client_id: 6
+2022-10-05 01:41:22,153:INFO:file name: 250MB.bin, file size: 250000000
+2022-10-05 01:41:22,153:INFO:client address: ('192.168.1.124', 53838), client_id: 7
+2022-10-05 01:41:22,247:INFO:file name: 250MB.bin, file size: 250000000
+2022-10-05 01:41:22,247:INFO:client address: ('192.168.1.124', 53839), client_id: 8
+2022-10-05 01:41:22,362:INFO:file name: 250MB.bin, file size: 250000000
+2022-10-05 01:41:22,362:INFO:client address: ('192.168.1.124', 53840), client_id: 9
+2022-10-05 01:48:10,330:INFO:file downloaded correctly: 250MB.bin
+2022-10-05 01:48:10,330:INFO:time to download file: 402.3847191333771 s
+2022-10-05 01:48:10,458:INFO:file downloaded correctly: 250MB.bin
+2022-10-05 01:48:10,458:INFO:time to download file: 402.7682590484619 s
+2022-10-05 01:48:12,175:INFO:file downloaded correctly: 250MB.bin
+2022-10-05 01:48:12,175:INFO:time to download file: 403.1000988483429 s
+2022-10-05 01:48:12,808:INFO:file downloaded correctly: 250MB.bin
+2022-10-05 01:48:12,808:INFO:time to download file: 403.2586200237274 s
+2022-10-05 01:48:13,383:INFO:file downloaded correctly: 250MB.bin
+2022-10-05 01:48:13,384:INFO:time to download file: 403.4419946670532 s
+2022-10-05 01:48:13,385:INFO:file downloaded correctly: 250MB.bin
+2022-10-05 01:48:13,385:INFO:time to download file: 405.2579481601715 s
+2022-10-05 01:48:13,596:INFO:file downloaded correctly: 250MB.bin
+2022-10-05 01:48:13,596:INFO:time to download file: 405.95846366882324 s
+2022-10-05 01:48:13,948:INFO:file downloaded correctly: 250MB.bin
+2022-10-05 01:48:13,948:INFO:time to download file: 406.5280132293701 s
+2022-10-05 01:48:13,948:INFO:file downloaded correctly: 250MB.bin
+2022-10-05 01:48:13,949:INFO:time to download file: 405.3322286605835 s
+2022-10-05 01:48:13,949:INFO:file downloaded correctly: 250MB.bin
+2022-10-05 01:48:13,950:INFO:time to download file: 406.7157244682312 s

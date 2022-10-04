@@ -1,0 +1,40 @@
+2022-10-05 01:37:36,722:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-05 01:37:36,722:INFO:client address: ('192.168.1.124', 53802), client_id: 0
+2022-10-05 01:37:36,831:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-05 01:37:36,831:INFO:client address: ('192.168.1.124', 53803), client_id: 1
+2022-10-05 01:37:36,947:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-05 01:37:36,947:INFO:client address: ('192.168.1.124', 53804), client_id: 2
+2022-10-05 01:37:37,049:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-05 01:37:37,049:INFO:client address: ('192.168.1.124', 53805), client_id: 3
+2022-10-05 01:37:37,164:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-05 01:37:37,164:INFO:client address: ('192.168.1.124', 53806), client_id: 4
+2022-10-05 01:37:37,270:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-05 01:37:37,270:INFO:client address: ('192.168.1.124', 53807), client_id: 5
+2022-10-05 01:37:37,380:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-05 01:37:37,381:INFO:client address: ('192.168.1.124', 53808), client_id: 6
+2022-10-05 01:37:37,500:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-05 01:37:37,500:INFO:client address: ('192.168.1.124', 53809), client_id: 7
+2022-10-05 01:37:37,598:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-05 01:37:37,598:INFO:client address: ('192.168.1.124', 53810), client_id: 8
+2022-10-05 01:37:37,707:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-05 01:37:37,708:INFO:client address: ('192.168.1.124', 53811), client_id: 9
+2022-10-05 01:40:08,942:INFO:file downloaded correctly: 100MB.bin
+2022-10-05 01:40:08,942:INFO:time to download file: 149.5738787651062 s
+2022-10-05 01:40:08,980:INFO:file downloaded correctly: 100MB.bin
+2022-10-05 01:40:08,980:INFO:time to download file: 149.34793615341187 s
+2022-10-05 01:40:09,715:INFO:file downloaded correctly: 100MB.bin
+2022-10-05 01:40:09,715:INFO:time to download file: 150.22433280944824 s
+2022-10-05 01:40:09,856:INFO:file downloaded correctly: 100MB.bin
+2022-10-05 01:40:09,856:INFO:time to download file: 150.55858159065247 s
+2022-10-05 01:40:09,897:INFO:file downloaded correctly: 100MB.bin
+2022-10-05 01:40:09,898:INFO:time to download file: 150.9143853187561 s
+2022-10-05 01:40:10,068:INFO:file downloaded correctly: 100MB.bin
+2022-10-05 01:40:10,068:INFO:time to download file: 151.59524631500244 s
+2022-10-05 01:40:10,068:INFO:file downloaded correctly: 100MB.bin
+2022-10-05 01:40:10,069:INFO:time to download file: 150.97994232177734 s
+2022-10-05 01:40:10,207:INFO:file downloaded correctly: 100MB.bin
+2022-10-05 01:40:10,207:INFO:time to download file: 151.1538770198822 s
+2022-10-05 01:40:10,208:INFO:file downloaded correctly: 100MB.bin
+2022-10-05 01:40:10,208:INFO:time to download file: 151.16391277313232 s
+2022-10-05 01:40:10,513:INFO:file downloaded correctly: 100MB.bin
+2022-10-05 01:40:10,514:INFO:time to download file: 152.36527681350708 s

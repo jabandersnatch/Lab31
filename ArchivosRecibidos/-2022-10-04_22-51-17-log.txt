@@ -1,0 +1,4 @@
+2022-10-04 22:51:19,837:INFO:file name: 100MB.bin, file size: 104857600
+2022-10-04 22:51:19,837:INFO:client address: ('192.168.1.124', 58908), client_id: 0
+2022-10-04 22:52:20,791:INFO:file downloaded correctly: 100MB.bin
+2022-10-04 22:52:20,791:INFO:time to download file: 60.56035256385803 s

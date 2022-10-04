@@ -14,9 +14,6 @@ global_port = 5050
 FORMAT = 'utf-8'
 FILE_100MB = '100MB.bin'
 FILE_250MB = '250MB.bin'
-FILESIZE_100MB = os.path.getsize(FILE_100MB)
-FILESIZE_250MB = os.path.getsize(FILE_250MB)
-
 # Define ClientMultiSocket
 class ClientMultiSocket(threading.Thread):
 
@@ -62,7 +59,7 @@ class ClientMultiSocket(threading.Thread):
         tiempoDeTransferencia = 0
         file_folder = 'ArchivosRecibidos/'
         tamArchivo = filesize
-        file_path = file_folder+'Cliente'+str(self.id)+'-'+str(self.n_clients)+'.txt'
+        file_path = file_folder+'Cliente'+str(self.id)+'-Prueba-'+str(self.n_clients)+'.txt'
         with open(file_path, 'w') as f:
             # Obtener tiempo de transferencia de cliente
             start = time.time()
@@ -114,7 +111,7 @@ def main():
     # Request in console the file to download and the number of clientes between 1, 5 and 10
 
     # Create a loggin file that follows the format year-month-day_hour-minute-second-log.txt
-    logging.basicConfig(filename=f'ArchivosRecibidos/{time.strftime(f"-%Y-%m-%d_%H-%M-%S")}-log.txt', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(message)s')
+    logging.basicConfig(filename=f'ArchivosRecibidos/{time.strftime(f"%Y-%m-%d_%H-%M-%S")}-log.txt', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(message)s')
 
     file = input('File to download: (1) 100MB.bin or (2) 250MB.bin): ')
 
