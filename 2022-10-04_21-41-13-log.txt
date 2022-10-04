@@ -1,0 +1,40 @@
+2022-10-04 21:41:20,866:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:41:20,866:INFO:client_address:('192.168.1.124', 53831)
+2022-10-04 21:41:20,973:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:41:20,974:INFO:client_address:('192.168.1.124', 53832)
+2022-10-04 21:41:21,084:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:41:21,084:INFO:client_address:('192.168.1.124', 53833)
+2022-10-04 21:41:21,191:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:41:21,193:INFO:client_address:('192.168.1.124', 53834)
+2022-10-04 21:41:21,304:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:41:21,305:INFO:client_address:('192.168.1.124', 53835)
+2022-10-04 21:41:21,416:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:41:21,416:INFO:client_address:('192.168.1.124', 53836)
+2022-10-04 21:41:21,547:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:41:21,551:INFO:client_address:('192.168.1.124', 53837)
+2022-10-04 21:41:21,644:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:41:21,644:INFO:client_address:('192.168.1.124', 53838)
+2022-10-04 21:41:21,738:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:41:21,738:INFO:client_address:('192.168.1.124', 53839)
+2022-10-04 21:41:21,853:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:41:21,853:INFO:client_address:('192.168.1.124', 53840)
+2022-10-04 21:48:09,824:INFO:The file was sent successfully
+2022-10-04 21:48:09,830:INFO:transfer time:402.39802622795105
+2022-10-04 21:48:09,953:INFO:The file was sent successfully
+2022-10-04 21:48:09,953:INFO:transfer time:402.7762303352356
+2022-10-04 21:48:11,758:INFO:The file was sent successfully
+2022-10-04 21:48:11,759:INFO:transfer time:403.199999332428
+2022-10-04 21:48:12,301:INFO:The file was sent successfully
+2022-10-04 21:48:12,301:INFO:transfer time:403.2645959854126
+2022-10-04 21:48:12,875:INFO:The file was sent successfully
+2022-10-04 21:48:12,876:INFO:transfer time:403.45284485816956
+2022-10-04 21:48:12,877:INFO:The file was sent successfully
+2022-10-04 21:48:12,877:INFO:transfer time:405.2700102329254
+2022-10-04 21:48:13,088:INFO:The file was sent successfully
+2022-10-04 21:48:13,088:INFO:transfer time:405.97089290618896
+2022-10-04 21:48:13,439:INFO:The file was sent successfully
+2022-10-04 21:48:13,440:INFO:transfer time:406.5383937358856
+2022-10-04 21:48:13,442:INFO:The file was sent successfully
+2022-10-04 21:48:13,442:INFO:The file was sent successfully
+2022-10-04 21:48:13,443:INFO:transfer time:405.3405270576477
+2022-10-04 21:48:13,443:INFO:transfer time:406.72967171669006
