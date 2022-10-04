@@ -6,6 +6,7 @@ import socket
 import threading
 import os
 import time
+import logging
 
 IP = '192.168.1.100'
 PORT = 5050
@@ -15,8 +16,7 @@ FORMAT = 'utf-8'
 FILE_100MB = '100MB.bin'
 FILE_250MB = '250MB.bin'
 FILESIZE_100MB = os.path.getsize(FILE_100MB)
-#FILESIZE_250MB = os.path.getsize(FILE_250MB)
-HELLO  = 'hello.txt'
+FILESIZE_250MB = os.path.getsize(FILE_250MB)
 
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -26,6 +26,11 @@ def main():
     """
     this function will start the server and wait for a connection from the client.
     """
+
+    # Create a log_file that follows the format year-month-day_hour-minutes-seconds-log.txt
+
+    logging.basicConfig(filename=f'{time.strftime("%Y-%m-%d_%H-%M-%S")}-log.txt', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(message)s')
+
     
     server.listen()
 
@@ -55,19 +60,25 @@ def handle_client(conn, addr):
         print(f'[RECEIVED] {ready}')
         print(f'[SENT] ack')
         file_name = conn.recv(1024).decode(FORMAT)
+        file_size = FILESIZE_100MB
         print(f'[RECEIVED] {file_name}')
         if file_name == '100MB.bin':
             file = FILE_100MB
+
         elif file_name == '250MB.bin':
             file = FILE_250MB
-            #bar = tqdm.tqdm(range(FILESIZE_250MB), f'Sending {file_name}', unit='B', unit_scale=True, unit_divisor=1024)
+            file_size = FILESIZE_250MB
         else:
             print('File not found')
             conn.close()
             return
 
         ## Send the size of the file to the client
-        conn.send(str(FILESIZE_100MB).encode(FORMAT))
+        conn.send(str(file_size).encode(FORMAT))
+
+        ## log the file name and size 
+        logging.info(f'filename:{file_name} , filesize:{file_size}')
+        logging.info(f'client_address:{addr}')
         msg = conn.recv(1024).decode(FORMAT)
         tiempoDeTransferencia = 0
 
@@ -87,6 +98,17 @@ def handle_client(conn, addr):
         file_hash = generate_hash(file)
         conn.send(file_hash)
         print(f'[SENT] {file_hash}')
+        # recive the confirmation from the client
+        msg = conn.recv(1024).decode(FORMAT)
+        print(f'[RECEIVED] {msg}')
+        if msg == 'ack':
+            print(f'[SENT] ack')
+            logging.info(f'The file was sent successfully')
+        else:
+            print(f'[SENT] nack')
+            logging.info(f'The file was not sent successfully')
+        print(f'[CLOSED] {addr} disconnected.')
+        logging.info(f'transfer time:{tiempoDeTransferencia}')
 
 def generate_hash(file):
     import hashlib
@@ -94,5 +116,5 @@ def generate_hash(file):
         file_hash = hashlib.md5(f.read()).hexdigest()
         return file_hash.encode(FORMAT)
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     main()
