@@ -1,0 +1,20 @@
+2022-10-04 21:29:41,198:INFO:filename:100MB.bin , filesize:104857600
+2022-10-04 21:29:41,198:INFO:client_address:('192.168.1.124', 53700)
+2022-10-04 21:29:41,308:INFO:filename:100MB.bin , filesize:104857600
+2022-10-04 21:29:41,308:INFO:client_address:('192.168.1.124', 53701)
+2022-10-04 21:29:41,416:INFO:filename:100MB.bin , filesize:104857600
+2022-10-04 21:29:41,417:INFO:client_address:('192.168.1.124', 53702)
+2022-10-04 21:29:41,532:INFO:filename:100MB.bin , filesize:104857600
+2022-10-04 21:29:41,532:INFO:client_address:('192.168.1.124', 53703)
+2022-10-04 21:29:41,635:INFO:filename:100MB.bin , filesize:104857600
+2022-10-04 21:29:41,635:INFO:client_address:('192.168.1.124', 53704)
+2022-10-04 21:31:11,975:INFO:The file was sent successfully
+2022-10-04 21:31:11,975:INFO:transfer time:89.56023025512695
+2022-10-04 21:31:12,061:INFO:The file was sent successfully
+2022-10-04 21:31:12,061:INFO:transfer time:89.16690874099731
+2022-10-04 21:31:12,227:INFO:The file was sent successfully
+2022-10-04 21:31:12,228:INFO:transfer time:89.6086540222168
+2022-10-04 21:31:12,373:INFO:The file was sent successfully
+2022-10-04 21:31:12,373:INFO:transfer time:89.84465837478638
+2022-10-04 21:31:12,417:INFO:The file was sent successfully
+2022-10-04 21:31:12,417:INFO:transfer time:90.19608759880066

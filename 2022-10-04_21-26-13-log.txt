@@ -1,0 +1,4 @@
+2022-10-04 21:26:24,124:INFO:filename:250MB.bin , filesize:250000000
+2022-10-04 21:26:24,125:INFO:client_address:('192.168.1.124', 53658)
+2022-10-04 21:28:54,356:INFO:The file was sent successfully
+2022-10-04 21:28:54,356:INFO:transfer time:149.24757742881775
